@@ -22,8 +22,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEvent event,
     Emitter emit,
   ) async {
-    event.when(
-      loginButtomPress: (request) {},
+    await event.when(
+      loginButtomPress: (request) async {
+        emit(const LoginState.loading());
+        final result = await loginUseCase(params: request);
+
+        result.fold(
+            (failure) => emit(LoginState.failure(message: failure.message)),
+            (auth) => emit(LoginState.success(auth: auth)));
+      },
     );
   }
 

@@ -6,7 +6,7 @@ import 'core/bloc_provider/bloc_providers.dart';
 import 'core/service_locator/dependency_injection.dart';
 
 void main() {
-  init();
+   init();
   dotenv.load(fileName: '.env');
   runApp(blocProviders(child: const MyApp()));
 }
