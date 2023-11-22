@@ -24,7 +24,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final response = await dio.post(url, data: request.toJson());
 
     if (response.statusCode == 200) {
-      Map<String, dynamic> responseMap = jsonDecode(response.data);
+      Map<String, dynamic> responseMap = response.data;
       return AuthModel.fromJson(responseMap);
     } else {
       throw ServerException();
