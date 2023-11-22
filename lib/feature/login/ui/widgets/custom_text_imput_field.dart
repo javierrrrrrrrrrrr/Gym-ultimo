@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 
 class InputFieldWidget extends StatelessWidget {
-  const InputFieldWidget(
-      {Key? key,
-      required this.icon,
-      required this.maxline,
-      required this.left,
-      required this.right,
-      required this.width,
-      this.hinttext,
-      this.validator,
-      required this.onChanged,
-      required this.keyboardType,
-      required this.obscureText,
-      this.initialvalue,
-      this.enabled,
-      this.label,
-      this.counter,
-      this.validateIcon,
-      this.maxLength})
-      : super(key: key);
+  const InputFieldWidget({
+    Key? key,
+    required this.icon,
+    required this.maxline,
+    required this.left,
+    required this.right,
+    required this.width,
+    this.hinttext,
+    this.validator,
+    this.onChanged,
+    required this.keyboardType,
+    required this.obscureText,
+    this.initialvalue,
+    this.enabled,
+    this.label,
+    this.counter,
+    this.validateIcon,
+    this.maxLength,
+    this.controller,
+  }) : super(key: key);
   final double width;
   final String? hinttext;
+  final TextEditingController? controller;
 
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
@@ -42,6 +44,7 @@ class InputFieldWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: left, right: right),
       child: TextFormField(
+        controller: controller,
         maxLength: maxLength,
         enabled: (enabled == null) ? true : enabled,
         maxLines: maxline,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gym/feature/login/ui/widgets/custom_text_imput_field.dart';
+
+import '../blocs/login_bloc.dart';
 
 class FormSection extends StatelessWidget {
   const FormSection({
@@ -8,6 +11,7 @@ class FormSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loginbloc = context.read<LoginBloc>();
     return Form(
 
         // key: loginController.formkey,
@@ -17,6 +21,7 @@ class FormSection extends StatelessWidget {
           child: Column(
             children: [
               InputFieldWidget(
+                controller: loginbloc.emailcontroller,
                 validateIcon: true,
                 icon: true,
                 maxline: 1,
@@ -26,7 +31,6 @@ class FormSection extends StatelessWidget {
                 obscureText: false,
                 width: 200,
                 label: const Text('Entrar Email'),
-                onChanged: (value) {},
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   return null;
@@ -36,6 +40,7 @@ class FormSection extends StatelessWidget {
                 height: 10,
               ),
               InputFieldWidget(
+                controller: loginbloc.passwordcontroller,
                 validateIcon: true,
                 icon: true,
                 maxline: 1,
@@ -45,7 +50,6 @@ class FormSection extends StatelessWidget {
                 obscureText: true,
                 width: 200,
                 label: const Text('Entrar Password'),
-                onChanged: (value) {},
                 validator: (value) {
                   return null;
                 },
